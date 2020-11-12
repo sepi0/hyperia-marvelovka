@@ -1,13 +1,15 @@
 <template>
-    <div class="wrapper">
+    <div class="inside-wrapper">
         <div class="hero-card" v-on:click="isShown = !isShown">
             <img v-bind:src="hero.thumbnail.path + '.' + hero.thumbnail.extension" alt="picture">
             <h3>{{ hero.name }}</h3>
             <transition name="fade">
                 <div v-show="isShown" class="sub-card">
                     <p>{{ hero.description }}</p>
-                    <button v-on:click="removeFromFavorites(hero)">Remove from Favorites</button>
-                    <button v-on:click="addToFavorites(hero)">Add to Favorites</button>
+                    <div class="button-wrapper">
+                        <div class="fav-button" v-on:click="removeFromFavorites(hero)">Odstranit z oblubenych</div>
+                        <div class="fav-button" v-on:click="addToFavorites(hero)">Pridat k oblubenym</div>
+                    </div>
                 </div>
             </transition>
         </div>
@@ -34,7 +36,14 @@
 </script>
 
 <style scoped>
-    .wrapper {
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    .fav-button {
+        margin: 5px 10px;
+        background-color: red;
+        color: white;
+        padding: 5px 20px;
+    }
+    .inside-wrapper {
         width: 500px;
         border-radius: 10px;
         margin: 10px;
@@ -43,12 +52,13 @@
         transition: transform 0.33s ease-in-out;
     }
 
-    .wrapper:hover {
+    .inside-wrapper:hover {
         cursor: pointer;
         transform: translateY(-5px);
     }
 
     .hero-card {
+        font-family: 'Cairo', sans-serif;
         width: 100%;
         height: 100%;
         display: flex;
@@ -61,6 +71,12 @@
         height: 64px;
         border-radius: 10px;
         align-self: center;
+    }
+
+    .button-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
     }
 
     .fade-enter-active, .fade-leave-active {

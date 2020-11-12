@@ -1,39 +1,34 @@
 <template>
     <div id="app">
         <search-component/>
-        <marvel-heroes/>
+        <searched-value/>
+        <marvel-heroes v-show="ukazVsetkych"/>
     </div>
 </template>
 
 <script>
 	import MarvelHeroes from "@/components/MarvelHeroes";
 	import SearchComponent from "@/components/SearchComponent";
-
+    import SearchedValue from "@/components/SearchedValue";
 	export default {
 		name: 'App',
 		components: {
 			MarvelHeroes,
 			SearchComponent,
+            SearchedValue
 		},
         data: () => ({
-           searchValue: "",
-        }),
+            ukazVsetkych: true
+        })
 	}
 </script>
 
 <style>
     #app {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
         text-align: center;
-        color: #2c3e50;
         margin-top: 60px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-    }
-    .favorites {
-        margin: 0 auto;
     }
 </style>

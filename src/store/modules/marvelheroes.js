@@ -1,15 +1,11 @@
 import axios from 'axios';
 import crypto from 'crypto-js';
 
-const public_key = "9eb1ba062f0352a68dcb6a46e3224214";
-const private_key = "02e8726a411ab2235d8eb9df8b0fb8c23a8f1f48";
-
-
+const public_key	= "9eb1ba062f0352a68dcb6a46e3224214";
+const private_key	= "02e8726a411ab2235d8eb9df8b0fb8c23a8f1f48";
 const limit = 100;
-
-const ts = new Date().getTime();
-const hash = crypto.MD5(ts + private_key + public_key);
-
+const ts 	= new Date().getTime();
+const hash 	= crypto.MD5(ts + private_key + public_key);
 
 const state = {
 	heroes: [],
@@ -46,12 +42,17 @@ const actions = {
 		commit('removeFavorite', hero)
 		console.log(state.favoriteHeroes)
 	},
+	findHero({ commit }, heroToFind) {
+		commit('find', heroToFind)
+		console.log(state.heroes.filter(hero => heroToFind.name === hero.name))
+	}
 };
 
 const mutations = {
 	setHeroes: (state, heroes) 				=> state.heroes = heroes,
 	setFavorite: (state, hero) 				=> state.favoriteHeroes.push(hero),
 	removeFavorite: (state, heroToRemove) 	=> state.favoriteHeroes = state.favoriteHeroes.filter(hero => heroToRemove.id !== hero.id),
+	find: (state, heroToFind)				=> state.heroes.filter(hero => heroToFind.name === hero.name)
 };
 
 export default {
