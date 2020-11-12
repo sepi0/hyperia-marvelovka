@@ -39,10 +39,13 @@
 		methods: {
 			...mapActions(['fetchHeroes'])
 		},
+        // TODO: ulozit hrdinov do local storage.
 		created() {
+			console.log("Fetching Heroes from MARVEL.API! They will be displayed after fetching is done.");
 			this.fetchHeroes();
-			console.log("created!");
 		}
+
+		// TODO: zobrazit vyhladavaneho hrdinu.
 	}
 </script>
 
